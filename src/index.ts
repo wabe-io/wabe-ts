@@ -11,3 +11,6 @@ export * from './assertNotNullish';
 export * from './guid';
 export * from './pubSubQueue';
 export * from './stringSearch';
+export * from './functionalWrapper';
+export * from './modify';
+export * from './measure';
