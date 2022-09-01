@@ -2,3 +2,8 @@ export * from './assertNever';
 export * from './hasProp';
 export * from './objectHasProp';
 export * from './httpStatusCodes';
+export * from './jsonValue';
+export * from './kvp';
+export * from './escapeRegExp';
+export * from './shuffle';
+export * from './sleep';
