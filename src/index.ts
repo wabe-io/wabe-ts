@@ -7,3 +7,7 @@ export * from './kvp';
 export * from './escapeRegExp';
 export * from './shuffle';
 export * from './sleep';
+export * from './assertNotNullish';
+export * from './guid';
+export * from './pubSubQueue';
+export * from './stringSearch';
