@@ -1,9 +1,11 @@
+export type JSONObject = { [x: string]: JSONValue };
+
 export type JSONValue =
   | string
   | number
   | boolean
   | null
-  | { [x: string]: JSONValue }
+  | JSONObject
   | Array<JSONValue>;
 
 export const assertJSONValue = (input: any): JSONValue => {
@@ -38,4 +40,8 @@ export const assertJSONValue = (input: any): JSONValue => {
   }
 
   throw new Error(`Type ${type} not supported as JSONValue`);
+};
+
+export const isJSONObject = (input: any): input is JSONObject => {
+  return typeof input === 'object' && input != null && !Array.isArray(input);
 };

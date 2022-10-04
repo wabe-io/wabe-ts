@@ -1,8 +1,50 @@
 import { describe, it } from 'mocha';
 import * as chai from 'chai';
-import { assertJSONValue } from '../jsonValue';
+import { assertJSONValue, isJSONObject } from '../jsonValue';
 
 const expect = chai.expect;
+
+describe('isJSONObject', () => {
+  it('can spot a number', () => {
+    expect(isJSONObject(1)).to.be.false;
+  });
+
+  it('can spot a string', () => {
+    expect(isJSONObject('foo')).to.be.false;
+  });
+
+  it('can spot a boolean', () => {
+    expect(isJSONObject(true)).to.be.false;
+  });
+
+  it('can spot an array', () => {
+    expect(isJSONObject(['foo', 'bar'])).to.be.false;
+  });
+
+  it('can spot a null', () => {
+    expect(isJSONObject(null)).to.be.false;
+  });
+
+  it('can spot an undefined', () => {
+    expect(isJSONObject(undefined)).to.be.false;
+  });
+
+  it('can spot a function', () => {
+    expect(isJSONObject(() => {})).to.be.false;
+  });
+
+  it('can identify an object', () => {
+    expect(isJSONObject({})).to.be.true;
+  });
+
+  it('can identify a complex object', () => {
+    expect(isJSONObject({ foo: 1, bar: 2 })).to.be.true;
+  });
+
+  it('can identify a nested object', () => {
+    expect(isJSONObject({ foo: 1, bar: 2, baz: [] })).to.be.true;
+  });
+});
 
 describe('assertJsonValue', () => {
   it('asserts a string as valid', () => {
