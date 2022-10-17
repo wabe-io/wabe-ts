@@ -15,3 +15,4 @@ export * from './functionalWrapper';
 export * from './modify';
 export * from './measure';
 export * from './timelapse';
+export * from './time';
