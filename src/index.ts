@@ -14,3 +14,4 @@ export * from './stringSearch';
 export * from './functionalWrapper';
 export * from './modify';
 export * from './measure';
+export * from './timeLapse';
