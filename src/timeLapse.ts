@@ -48,18 +48,18 @@ export const milliseconds = (value: number): Millisecond => ({
   __brand: 'wabets-millisecond',
 });
 
-type TimeLapse = Millisecond | Second | Minute | Hour | Day;
+type Timelapse = Millisecond | Second | Minute | Hour | Day;
 
-export const toDate = (lapse: TimeLapse): number =>
+export const toDate = (lapse: Timelapse): number =>
   lapse.__brand === 'wabets-millisecond'
     ? lapse.value
     : lapse.__brand === 'wabets-second'
     ? lapse.value * 1000
     : lapse.__brand === 'wabets-minute'
-    ? lapse.value * 60 * 1000
+    ? lapse.value * 60000
     : lapse.__brand === 'wabets-hour'
-    ? lapse.value * 1000 * 60 * 60
-    : lapse.value * 1000 * 60 * 60 * 24;
+    ? lapse.value * 3600000
+    : lapse.value * 86400000;
 
 export const toMillisecond = (value: number): Millisecond => ({
   value,
@@ -86,9 +86,9 @@ export const toDay = (value: number): Day => ({
   __brand: 'wabets-day',
 });
 
-export const addLapses = <T extends TimeLapse>(
+export const addTimelapses = <T extends Timelapse>(
   lapse1: T,
-  lapse2: TimeLapse,
+  lapse2: Timelapse,
 ): T => ({
   ...lapse1,
   value:
@@ -98,24 +98,30 @@ export const addLapses = <T extends TimeLapse>(
       : lapse1.__brand === 'wabets-second'
       ? 1000
       : lapse1.__brand === 'wabets-minute'
-      ? 1000 * 60
+      ? 60000
       : lapse1.__brand === 'wabets-hour'
-      ? 1000 * 60 * 60
-      : 1000 * 60 * 60 * 24),
+      ? 3600000
+      : 86400000),
 });
 
-export const mulLapse = <T extends TimeLapse>(lapse: T, scalar: number) => ({
+export const mulTimelapse = <T extends Timelapse>(
+  lapse: T,
+  scalar: number,
+) => ({
   ...lapse,
   value: lapse.value * scalar,
 });
 
-export const divLapse = <T extends TimeLapse>(lapse: T, scalar: number) => ({
+export const divTimelapse = <T extends Timelapse>(
+  lapse: T,
+  scalar: number,
+) => ({
   ...lapse,
   value: lapse.value / scalar,
 });
 
-export const compareLapses = (
-  lapse1: TimeLapse,
-  lapse2: TimeLapse,
+export const compareTimelapses = (
+  lapse1: Timelapse,
+  lapse2: Timelapse,
   comparator: (val1: number, val2: number) => boolean,
 ): boolean => comparator(toDate(lapse1), toDate(lapse2));

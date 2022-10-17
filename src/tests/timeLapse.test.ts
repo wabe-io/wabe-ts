@@ -7,11 +7,11 @@ import {
   hours,
   days,
   toDate,
-  addLapses,
-  mulLapse,
-  compareLapses,
-  divLapse,
-} from '../timeLapse';
+  addTimelapses,
+  mulTimelapse,
+  compareTimelapses,
+  divTimelapse,
+} from '../timelapse';
 
 const expect = chai.expect;
 
@@ -36,39 +36,39 @@ describe('TimeLapse', () => {
     const t1 = days(1);
     const t2 = days(1);
 
-    expect(toDate(addLapses(t1, t2))).to.eq(24 * 1000 * 60 * 60 * 2);
+    expect(toDate(addTimelapses(t1, t2))).to.eq(24 * 1000 * 60 * 60 * 2);
   });
 
   it('can substract two timelapses', () => {
     const t1 = days(1);
     const t2 = days(-1);
 
-    expect(toDate(addLapses(t1, t2))).to.eq(0);
+    expect(toDate(addTimelapses(t1, t2))).to.eq(0);
   });
 
   it('can multiply a timelapse', () => {
     const t1 = days(1);
 
-    expect(toDate(mulLapse(t1, 2))).to.eq(24 * 1000 * 60 * 60 * 2);
+    expect(toDate(mulTimelapse(t1, 2))).to.eq(24 * 1000 * 60 * 60 * 2);
   });
 
   it('can divide timelapse', () => {
     const t1 = days(1);
 
-    expect(toDate(divLapse(t1, 2))).to.eq(12 * 1000 * 60 * 60);
+    expect(toDate(divTimelapse(t1, 2))).to.eq(12 * 1000 * 60 * 60);
   });
 
   it('can compare two equal timelapses', () => {
     const t1 = days(1);
     const t2 = days(1);
 
-    expect(compareLapses(t1, t2, (a, b) => a === b)).to.be.true;
+    expect(compareTimelapses(t1, t2, (a, b) => a === b)).to.be.true;
   });
 
   it('can compare two equal timelapses', () => {
     const t1 = days(1);
     const t2 = hours(24);
 
-    expect(compareLapses(t1, t2, (a, b) => a === b)).to.be.true;
+    expect(compareTimelapses(t1, t2, (a, b) => a === b)).to.be.true;
   });
 });
