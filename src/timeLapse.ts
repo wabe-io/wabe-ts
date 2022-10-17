@@ -48,7 +48,7 @@ export const milliseconds = (value: number): Millisecond => ({
   __brand: 'wabets-millisecond',
 });
 
-type Timelapse = Millisecond | Second | Minute | Hour | Day;
+export type Timelapse = Millisecond | Second | Minute | Hour | Day;
 
 export const toDate = (lapse: Timelapse): number =>
   lapse.__brand === 'wabets-millisecond'
