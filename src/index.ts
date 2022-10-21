@@ -16,3 +16,5 @@ export * from './modify';
 export * from './measure';
 export * from './timelapse';
 export * from './time';
+export * from './nestedError';
+export * from './httpError';
