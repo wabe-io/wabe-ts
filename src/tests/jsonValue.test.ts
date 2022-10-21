@@ -30,7 +30,7 @@ describe('isJSONObject', () => {
   });
 
   it('can spot a function', () => {
-    expect(isJSONObject(() => {})).to.be.false;
+    expect(isJSONObject(() => undefined)).to.be.false;
   });
 
   it('can identify an object', () => {
@@ -90,7 +90,7 @@ describe('assertJsonValue', () => {
 
   it('fails on function', () => {
     expect(() => {
-      assertJSONValue(() => {});
+      assertJSONValue(() => undefined);
     }).to.throw();
   });
 

@@ -1,3 +1,5 @@
+import { objectHasProp } from './objectHasProp';
+
 export type JSONObject = { [x: string]: JSONValue };
 
 export type JSONValue =
@@ -8,40 +10,41 @@ export type JSONValue =
   | JSONObject
   | Array<JSONValue>;
 
-export const assertJSONValue = (input: any): JSONValue => {
-  const type = typeof input;
-
+export const assertJSONValue = (input: unknown): JSONValue => {
   if (
-    type === 'string' ||
-    type === 'number' ||
-    type === 'boolean' ||
+    typeof input === 'string' ||
+    typeof input === 'number' ||
+    typeof input === 'boolean' ||
     input === null
   ) {
     return input;
   }
 
-  if (type === 'object') {
+  if (typeof input === 'object') {
     if (Array.isArray(input)) {
       return input.map(assertJSONValue);
     } else {
       const keys = Object.keys(input);
 
-      const obj = {} as any;
+      const obj = {} as Record<string, JSONValue>;
 
       for (const key of keys) {
-        const val = input[key];
-        if (val !== undefined) {
-          obj[key] = assertJSONValue(input[key]);
+        if (objectHasProp(input, key)) {
+          const val = input[key];
+          if (val !== undefined) {
+            obj[key] = assertJSONValue(input[key]);
+          }
+        } else {
+          throw new Error('Could not serialize');
         }
       }
-
       return obj;
     }
   }
 
-  throw new Error(`Type ${type} not supported as JSONValue`);
+  throw new Error(`Type ${typeof input} not supported as JSONValue`);
 };
 
-export const isJSONObject = (input: any): input is JSONObject => {
+export const isJSONObject = (input: unknown): input is JSONObject => {
   return typeof input === 'object' && input != null && !Array.isArray(input);
 };

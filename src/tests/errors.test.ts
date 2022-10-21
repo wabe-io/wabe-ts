@@ -12,6 +12,7 @@ describe('HTTPError', () => {
       (
         new HttpError(HttpStatusCodes.Accepted, {
           innerError: new HttpError(HttpStatusCodes.Ok),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }).innerError as any as HttpError
       ).statusCode,
     ).to.eq(HttpStatusCodes.Ok);
@@ -30,6 +31,7 @@ describe('NestedError', () => {
       (
         new NestedError({
           innerError: new NestedError({ msg: 'foo' }),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }).innerError as any as NestedError
       ).message,
     ).to.eq('foo');

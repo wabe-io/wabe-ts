@@ -18,3 +18,7 @@ export * from './timelapse';
 export * from './time';
 export * from './nestedError';
 export * from './httpError';
+export * from './forbiddenError';
+export * from './internalServerError';
+export * from './notFoundError';
+export * from './unauthorizedError';
