@@ -3,10 +3,60 @@ import * as chai from 'chai';
 import { HttpError } from '../httpError';
 import { HttpStatusCodes } from '../httpStatusCodes';
 import { NestedError } from '../nestedError';
+import { UnauthorizedError } from '../unauthorizedError';
 
 const expect = chai.expect;
 
+describe('UnauthorizedError', () => {
+  it('serializes properly the simplest error', () => {
+    const errorString = String(new UnauthorizedError());
+    const hydratedError = JSON.parse(errorString);
+
+    const mockError = {
+      statusCode: HttpStatusCodes.Unauthorized,
+      message: '',
+    };
+
+    expect(hydratedError).to.eql(mockError);
+  });
+});
+
 describe('HTTPError', () => {
+  it('serializes properly the simplest error', () => {
+    const statusCode = HttpStatusCodes.Accepted;
+    const errorString = String(new HttpError(statusCode));
+    const hydratedError = JSON.parse(errorString);
+
+    const mockError = {
+      statusCode,
+      message: '',
+    };
+
+    expect(hydratedError).to.eql(mockError);
+  });
+
+  it('serializes properly a complex error', () => {
+    const statusCode = HttpStatusCodes.AlreadyReported;
+    const message = 'xadshhgdjsnmnndc';
+    const publicMessage = 'ds99834343';
+    const innerError = new Error('InnerErrorText');
+    const innerErrorText = String(innerError);
+    const errorString = String(
+      new HttpError(statusCode, { msg: message, publicMessage, innerError }),
+    );
+    console.log(errorString);
+    const hydratedError = JSON.parse(errorString);
+
+    const mockError = {
+      statusCode,
+      message,
+      innerError: innerErrorText,
+      publicMessage,
+    };
+
+    expect(hydratedError).to.eql(mockError);
+  });
+
   it('can nest an HTTPError', () => {
     expect(
       (

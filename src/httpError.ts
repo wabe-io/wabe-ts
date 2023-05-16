@@ -19,7 +19,7 @@ export class HttpError extends Error {
     super(params?.msg);
     this.innerError = params?.innerError;
     this.statusCode = statusCode;
-    this.publicMessage = this.publicMessage;
+    this.publicMessage = params?.publicMessage;
   }
 
   public toString(): string {
