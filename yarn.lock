@@ -1907,10 +1907,15 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-ts-mocha@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/ts-mocha/-/ts-mocha-7.0.0.tgz#f1549b48b46f53d7ae1dccbb26313c7879acb190"
-  integrity sha512-7WfkQw1W6JZXG5m4E1w2e945uWzBoZqmnOHvpMu0v+zvyKLdUQeTtRMfcQsVEKsUnYL6nTyH4okRt2PZucmFXQ==
+ts-decoder@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ts-decoder/-/ts-decoder-1.0.0.tgz#36bbf5b8c1e08e9e896d966e881085edd156735b"
+  integrity sha512-UXLkxaBeSbHP19NADUBSnUBNzKFXNM2q1TUvfvxHi8YZiJjKnp6LS5AlKKVofUHGqJosCOHD+rZBavoGGKE9AQ==
+
+ts-mocha@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/ts-mocha/-/ts-mocha-10.0.0.tgz#41a8d099ac90dbbc64b06976c5025ffaebc53cb9"
+  integrity sha512-VRfgDO+iiuJFlNB18tzOfypJ21xn2xbuZyDvJvqpTbWgkAgD17ONGr8t+Tl8rcBtOBdjXp5e/Rk+d39f7XBHRw==
   dependencies:
     ts-node "7.0.1"
   optionalDependencies:
