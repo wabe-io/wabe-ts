@@ -22,3 +22,4 @@ export * from './forbiddenError';
 export * from './internalServerError';
 export * from './notFoundError';
 export * from './unauthorizedError';
+export * from './isRunningCypress';
