@@ -24,3 +24,5 @@ export * from './notFoundError';
 export * from './unauthorizedError';
 export * from './isRunningCypress';
 export * from './logLevel';
+export * from './kvStorage';
+export * from './memKvStorage';
