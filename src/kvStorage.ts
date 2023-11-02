@@ -11,4 +11,5 @@ export interface KVStorageCollection {
   dropByKey: (key: string) => Promise<void>;
   setValue: (key: string, value: string) => Promise<void>;
   emptyCollection: () => Promise<void>;
+  getAllKeys: () => Promise<string[]>;
 }

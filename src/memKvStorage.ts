@@ -18,6 +18,10 @@ export class MemKVStorageCollection implements KVStorageCollection {
   emptyCollection = async (): Promise<void> => {
     this.data = {};
   };
+
+  getAllKeys = async (): Promise<string[]> => {
+    return Object.keys(this.data);
+  };
 }
 
 export class MemKVStorage implements KVStorage {
