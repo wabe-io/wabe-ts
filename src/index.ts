@@ -26,3 +26,4 @@ export * from './isRunningCypress';
 export * from './logLevel';
 export * from './kvStorage';
 export * from './memKvStorage';
+export * from './deferredSignal';
