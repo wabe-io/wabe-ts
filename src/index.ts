@@ -27,3 +27,4 @@ export * from './logLevel';
 export * from './kvStorage';
 export * from './memKvStorage';
 export * from './deferredSignal';
+export * from './getEnum';
