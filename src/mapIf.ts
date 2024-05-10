@@ -31,3 +31,34 @@ export const mapIfNotNullish = <T, O>(
 
   return fn(data);
 };
+
+export const ifNotUndefined =
+  <T, O>(fn: (input: T) => O) =>
+  (input: T | undefined): O | undefined => {
+    if (input === undefined) {
+      return undefined;
+    }
+
+    return fn(input);
+  };
+
+export const ifNotNull =
+  <T, O>(fn: (input: T) => O) =>
+  (input: T | null): O | null => {
+    if (input === null) {
+      return null;
+    }
+
+    return fn(input);
+  };
+
+export const ifNotNullish =
+  <T, O>(fn: (input: T) => O) =>
+  (input: T | null | undefined): O | null | undefined => {
+    if (input === null || input === undefined) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return input as any;
+    }
+
+    return fn(input);
+  };
