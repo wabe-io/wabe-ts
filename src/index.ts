@@ -30,3 +30,4 @@ export * from './deferredSignal';
 export * from './getEnum';
 export * from './mapIf';
 export * from './numberSegment';
+export * from './formatWithUnits';
