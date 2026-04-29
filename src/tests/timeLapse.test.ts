@@ -1,74 +1,44 @@
 import { describe, it } from 'mocha';
 import * as chai from 'chai';
+import { Day, Hour, Millisecond, Minute, Second } from '../timelapse';
 import {
-  milliseconds,
-  seconds,
-  minutes,
-  hours,
-  days,
-  toDate,
-  addTimelapses,
-  mulTimelapse,
-  compareTimelapses,
-  divTimelapse,
-} from '../timelapse';
+  dayToMs,
+  hourToMs,
+  minuteToMs,
+  secondToMs,
+} from '../timelapseOperations';
 
 const expect = chai.expect;
 
 describe('TimeLapse', () => {
   it('can create timelapses', () => {
-    const day = days(1);
-    const hour = hours(24);
-    const minute = minutes(24 * 60);
-    const second = seconds(24 * 60 * 60);
-    const millisecond = milliseconds(24 * 60 * 60 * 1000);
+    const day = Day(1);
+    console.log(`DAY ${day}`);
+    const hour = Hour(24);
+    const minute = Minute(24 * 60);
+    const second = Second(24 * 60 * 60);
+    const millisecond = Millisecond(24 * 60 * 60 * 1000);
 
     const msVal = 24 * 60 * 60 * 1000;
 
-    expect(toDate(day)).to.eq(msVal);
-    expect(toDate(hour)).to.eq(msVal);
-    expect(toDate(minute)).to.eq(msVal);
-    expect(toDate(second)).to.eq(msVal);
-    expect(toDate(millisecond)).to.eq(msVal);
+    expect(dayToMs(day)).to.eq(msVal);
+    expect(hourToMs(hour)).to.eq(msVal);
+    expect(minuteToMs(minute)).to.eq(msVal);
+    expect(secondToMs(second)).to.eq(msVal);
+    expect(millisecond).to.eq(msVal);
   });
 
   it('can add two timelapses', () => {
-    const t1 = days(1);
-    const t2 = days(1);
+    const t1 = Day(1);
+    const t2 = Day(1);
 
-    expect(toDate(addTimelapses(t1, t2))).to.eq(24 * 1000 * 60 * 60 * 2);
-  });
-
-  it('can substract two timelapses', () => {
-    const t1 = days(1);
-    const t2 = days(-1);
-
-    expect(toDate(addTimelapses(t1, t2))).to.eq(0);
-  });
-
-  it('can multiply a timelapse', () => {
-    const t1 = days(1);
-
-    expect(toDate(mulTimelapse(t1, 2))).to.eq(24 * 1000 * 60 * 60 * 2);
-  });
-
-  it('can divide timelapse', () => {
-    const t1 = days(1);
-
-    expect(toDate(divTimelapse(t1, 2))).to.eq(12 * 1000 * 60 * 60);
+    expect(t1 + t2).to.eq(2);
   });
 
   it('can compare two equal timelapses', () => {
-    const t1 = days(1);
-    const t2 = days(1);
+    const t1 = Day(1);
+    const t2 = Hour(24);
 
-    expect(compareTimelapses(t1, t2, (a, b) => a === b)).to.be.true;
-  });
-
-  it('can compare two equal timelapses', () => {
-    const t1 = days(1);
-    const t2 = hours(24);
-
-    expect(compareTimelapses(t1, t2, (a, b) => a === b)).to.be.true;
+    expect(dayToMs(t1) === hourToMs(t2)).to.be.true;
   });
 });
